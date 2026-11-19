@@ -11,7 +11,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:browser": "npm run build && node tests/hero-regressions-browser.mjs"
   },
   "dependencies": {
     "astro": "^7.4.12",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@types/node": "^26.6.6",
+    "playwright": "^1.65.1",
     "typescript": "^6.0.3"
   }
 }

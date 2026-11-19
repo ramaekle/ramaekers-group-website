@@ -1,11 +1,11 @@
 ---
 import { existsSync } from 'node:fs';
 import Button from '../../components/Button.astro';
-import { heroVariants, HERO_VARIANT_IDS } from '../../config/heroVariants';
+import { heroVariants, HERO_VARIANT_IDS, heroImageFiles } from '../../config/heroVariants';
 import { getHeroExperimentConfig, CONSENT_STORAGE_KEY, CONSENT_MAX_AGE } from '../../config/heroExperiment';
 const hero = heroVariants.A;
 const config = getHeroExperimentConfig(import.meta.env);
-const availableImages = HERO_VARIANT_IDS.filter(id => existsSync(`${process.cwd()}/public${heroVariants[id].imagePath}`));
+const availableImages = HERO_VARIANT_IDS.filter(id => heroImageFiles(heroVariants[id].imagePath).every(file => existsSync(`${process.cwd()}/public${file}`)));
 ---
 <!-- Gate before the hero parses, so a returning participant cannot see A flash first. -->
 <script is:inline define:vars={{ heroBoot: config, consentKey: CONSENT_STORAGE_KEY, consentMaxAge: CONSENT_MAX_AGE }}>

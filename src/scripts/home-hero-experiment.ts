@@ -1,4 +1,4 @@
-import { heroVariants, isHeroVariant, type HeroVariantId } from '../config/heroVariants.ts';
+import { heroVariants, isHeroVariant, heroImageSet, heroImageWidth, type HeroVariantId } from '../config/heroVariants.ts';
 import { eligibleHost, hasAnalyticsConsent, CONSENT_STORAGE_KEY, type HeroExperimentConfig } from '../config/heroExperiment.ts';
 import { HeroExperiment } from '../analytics/hero-experiment.ts';
 
@@ -44,7 +44,8 @@ if (section) {
     section!.style.setProperty('--hero-position-mobile', variant.focalPoint.mobile);
     section!.style.setProperty('--hero-position-desktop', variant.focalPoint.desktop);
     // Only the chosen, build-verified photograph is requested. Missing images stay navy.
-    section!.style.setProperty('--hero-photo', available.includes(id) ? `url("${variant.imagePath}")` : 'none');
+    const width = heroImageWidth(section!.clientWidth || window.innerWidth, window.devicePixelRatio);
+    section!.style.setProperty('--hero-photo', available.includes(id) ? heroImageSet(variant.imagePath, width) : 'none');
     root.classList.remove('hero-experiment-pending');
   }
 
