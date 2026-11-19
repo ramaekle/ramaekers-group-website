@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+type Props = Omit<HTMLAttributes<'input'>, 'id'> & {
+  id: string;
+  label: string;
+  hint?: string;
+  error?: string;
+  success?: string;
+};
+const { id, label, hint, error, success, 'aria-describedby': describedBy, ...attributes } = Astro.props;
+const description = [hint && `${id}-hint`, (error || success) && `${id}-message`, describedBy].filter(Boolean).join(' ') || undefined;
+---
+<div class="field">
+  <label for={id} class="field__label">{label}{attributes.required && <span> (required)</span>}</label>
+  <input {...attributes} id={id} class:list={['field__control', attributes.class]} aria-describedby={description} aria-invalid={error ? 'true' : undefined} data-state={success && !error ? 'success' : undefined} />
+  {hint && <p id={`${id}-hint`} class="field__message">{hint}</p>}
+  {(error || success) && <p id={`${id}-message`} class:list={['field__message', error ? 'status--error' : 'status--success']}>{error ? `Error: ${error}` : `Confirmed: ${success}`}</p>}
+</div>

@@ -1,0 +1,16 @@
+---
+import Card from '../../components/Card.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+const challenges = [
+  { title: 'Cash uncertainty and limited financial visibility', text: 'Decisions become reactive when leaders cannot see the cash implications of commitments, collections, and working capital.' },
+  { title: 'Margin erosion and pricing pressure', text: 'Revenue can mask weakening economics when pricing decisions and delivery costs are disconnected.' },
+  { title: 'Operating inefficiency and weak accountability', text: 'Unclear ownership and inconsistent measures allow cost, delay, and missed commitments to persist.' },
+  { title: 'Strategic priorities that fail to translate into execution', text: 'Plans lose traction when daily decisions, resources, and management reviews do not reinforce the same priorities.' },
+];
+---
+<section class="section" data-theme="ivory" aria-labelledby="challenges-title">
+  <div class="container stack home-section-stack">
+    <SectionHeading id="challenges-title" eyebrow="Executive challenges" title="Where Strategy Breaks Down"><p>The gap between the plan and the result usually appears in the decisions made every day.</p></SectionHeading>
+    <div class="grid grid--two">{challenges.map((challenge, index) => <Card><p class="eyebrow">Exposure / 0{index + 1}</p><h3 class="type-h4">{challenge.title}</h3><p>{challenge.text}</p></Card>)}</div>
+  </div>
+</section>

@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/Button.astro';
+import TypographySpecimen from '../../../components/design-system/TypographySpecimen.astro';
+import { labFonts } from '../../../data/typography-lab';
+import '../../../styles/typography-lab-fonts.css';
+import '../../../styles/typography-lab.css';
+---
+<BaseLayout title="Typography Lab" description="Compare eight font families and executive advisory font pairings in the Executive Command Typography Lab." noindex>
+  <section class="section" data-theme="navy" aria-labelledby="lab-title">
+    <div class="container stack">
+      <p class="eyebrow">Executive Command / Phase 1A</p>
+      <h1 id="lab-title">Typography Lab.</h1>
+      <p class="measure">Compare the character, clarity, and financial readability of eight font families. The approved Manrope / Inter production pairing remains unchanged.</p>
+      <a href="/design-system/">← Back to the design system</a>
+    </div>
+  </section>
+  <section class="section lab-workspace" data-theme="ivory" aria-labelledby="controls-title" id="typography-lab">
+    <div class="container stack lab-layout">
+      <div class="stack"><p class="eyebrow">Evaluation controls</p><h2 id="controls-title">Choose a pairing.</h2><p>Compare identical content with shared sizes, spacing, and surfaces. Changes apply only to the specimens below.</p></div>
+      <noscript><p class="card">Enable JavaScript to load and compare the evaluation fonts.</p></noscript>
+      <form id="lab-controls" class="card stack" aria-label="Typography evaluation settings">
+        <div class="lab-control-header cluster">
+          <label class="lab-toggle"><input id="compare-mode" type="checkbox" /> Compare two pairings</label>
+          <Button id="lab-reset">Reset to Manrope / Inter</Button>
+        </div>
+        <div class="lab-pair-controls">
+          {(['a', 'b'] as const).map(id => <fieldset id={`controls-${id}`} hidden={id === 'b'} class="lab-pair-fieldset">
+            <legend>Pairing {id.toUpperCase()}</legend>
+            <div class="grid grid--two">
+              <div class="field"><label class="field__label" for={`heading-${id}`}>Heading Font</label><select class="field__control" id={`heading-${id}`} name={`heading-${id}`}>{labFonts.map(font => <option selected={font.name === 'Manrope'}>{font.name}</option>)}</select></div>
+              <div class="field"><label class="field__label" for={`body-${id}`}>Body Font</label><select class="field__control" id={`body-${id}`} name={`body-${id}`}>{labFonts.map(font => <option selected={font.name === 'Inter'}>{font.name}</option>)}</select></div>
+            </div>
+          </fieldset>)}
+        </div>
+        <div class="lab-shared-controls">
+          <div class="field"><label class="field__label" for="heading-weight">Heading weight</label><select class="field__control" id="heading-weight" name="weight">{[500, 600, 700, 800].map(weight => <option value={weight} selected={weight === 700}>{weight}</option>)}</select></div>
+          <div class="field"><label class="field__label" for="body-size">Body size</label><select class="field__control" id="body-size" name="size">{[16, 17, 18].map(size => <option value={size} selected={size === 17}>{size}px</option>)}</select></div>
+          <div class="field"><label class="field__label" for="preview-theme">Preview theme</label><select class="field__control" id="preview-theme" name="theme"><option value="white">White</option><option value="ivory">Warm Ivory</option><option value="navy">Midnight Navy</option><option value="graphite">Graphite</option></select></div>
+          <div class="field"><label class="field__label" for="heading-tracking">Heading letter spacing <output id="tracking-value" for="heading-tracking">−0.035em</output></label><input class="lab-range" id="heading-tracking" name="tracking" type="range" min="-0.06" max="0.06" step="0.005" value="-0.035" /><p class="text-small">−0.06em to +0.06em</p></div>
+        </div>
+        <p class="text-small">Weights apply to all specimen headings. Lato uses real 400/700/900 faces; Josefin Sans and the existing Inter declaration stop at 700. Any mapped weight is identified in each panel. Synthetic weights are disabled.</p>
+      </form>
+      <div class="cluster lab-preview-heading"><h2 class="type-h3">Live specimens</h2><p class="text-small">Equal content. Equal scale. Independent font pairings.</p></div>
+      <div id="lab-comparisons" class="lab-comparisons">
+        {(['a', 'b'] as const).map(id => <section class="lab-panel" data-panel={id} data-theme="white" aria-labelledby={`pairing-${id}-title`} hidden={id === 'b'}>
+          <div class="lab-panel-caption stack"><h2 class="type-h4" id={`pairing-${id}-title`}>Pairing {id.toUpperCase()}</h2><p class="text-small" data-pairing-description>Manrope headings / Inter body</p><p class="text-small" data-font-status role="status" aria-live="polite" aria-atomic="true">Loading selected fonts…</p></div>
+          <div data-preview-content hidden><TypographySpecimen id={id} /></div>
+        </section>)}
+      </div>
+      <p class="text-small">At narrow widths, comparison panels stack in the same order. Font files are hosted locally and loaded only when needed. Selections stay in this page session.</p>
+    </div>
+  </section>
+</BaseLayout>
+<script>
+  import '../../../scripts/typography-lab';
+</script>

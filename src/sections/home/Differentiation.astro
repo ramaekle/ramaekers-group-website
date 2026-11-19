@@ -1,0 +1,15 @@
+---
+import SectionHeading from '../../components/SectionHeading.astro';
+const principles = [
+  { title: 'Practical execution', text: 'Translate analysis into clear actions that leadership teams can put to work.' },
+  { title: 'Management accountability', text: 'Connect priorities to defined owners, measures, and review cadences.' },
+  { title: 'Financial visibility', text: 'Keep the cash and margin consequences of operating decisions in view.' },
+  { title: 'Measurable improvement', text: 'Assess progress through operating measures and financial performance.' },
+];
+---
+<section class="section" data-theme="white" aria-labelledby="difference-title">
+  <div class="container stack home-section-stack">
+    <SectionHeading id="difference-title" eyebrow="The standard for our work" title="Advice Is Not the Outcome. Performance Is."><p>Analysis matters when it changes what the business does. Our emphasis is on the decisions, ownership, and operating practices that connect sound advice to measurable improvement.</p></SectionHeading>
+    <dl class="home-principles">{principles.map(principle => <div class="stack"><dt>{principle.title}</dt><dd>{principle.text}</dd></div>)}</dl>
+  </div>
+</section>

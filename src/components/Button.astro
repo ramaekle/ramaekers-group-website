@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+type ButtonProps = Omit<HTMLAttributes<'button'>, 'class'> & { href?: never };
+type LinkProps = Omit<HTMLAttributes<'a'>, 'class' | 'type'> & { href: string; type?: never; disabled?: never };
+type Props = (ButtonProps | LinkProps) & {
+  variant?: 'primary' | 'secondary';
+  class?: string;
+};
+const { variant = 'primary', class: className, href, type = 'button', ...attributes } = Astro.props;
+const classes = ['button', `button--${variant}`, className];
+---
+{href ? <a href={href} class:list={classes} {...attributes}><slot /></a> : <button type={type} class:list={classes} {...attributes}><slot /></button>}

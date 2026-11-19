@@ -1,0 +1,130 @@
+/* Executive Command: primitive tokens, then semantic theme aliases. */
+:root {
+  --color-midnight-navy: #101D2C;
+  --color-graphite: #283442;
+  --color-antique-gold: #B3935B;
+  --color-deep-gold: #80632F;
+  --color-light-gold: #D6B87E;
+  --color-warm-ivory: #F7F5F0;
+  --color-white: #FFFFFF;
+  --color-slate: #465363;
+  --color-steel-gray: #667587;
+  --color-light-steel: #D9DFE5;
+  --color-forest-green: #276749;
+  --color-burnt-orange: #B65C32;
+  --color-deep-red: #A63232;
+
+  --font-heading: 'Manrope', 'Arial', sans-serif;
+  --font-body: 'Inter', 'Arial', sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, monospace;
+  --text-h1: clamp(2.25rem, 1.81rem + 1.88vw, 3.5rem);
+  --text-h2: clamp(1.875rem, 1.655rem + .94vw, 2.5rem);
+  --text-h3: clamp(1.5rem, 1.412rem + .376vw, 1.75rem);
+  --text-h4: 1.3125rem;
+  --text-body: clamp(1rem, .978rem + .094vw, 1.0625rem);
+  --text-small: .875rem;
+  --text-label: .75rem;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --leading-heading: 1.2;
+  --leading-body: 1.65;
+  --tracking-heading: -.035em;
+  --tracking-label: .12em;
+
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --section-space: clamp(3rem, 2rem + 4vw, 6rem);
+  --page-gutter: clamp(1.25rem, .4rem + 3vw, 4rem);
+  --content-width: 76rem;
+  --measure: 65ch;
+
+  --border-width: 1px;
+  --border-strong: 2px;
+  --radius-none: 0;
+  --radius-button: .375rem;
+  --radius-input: .375rem;
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+  --shadow-subtle: 0 2px 8px rgb(16 29 44 / .04);
+  --control-height: 2.75rem;
+  --input-height: 3rem;
+  --focus-width: 3px;
+  --focus-offset: 4px;
+  --motion-fast: 150ms;
+  --motion-normal: 250ms;
+  --ease-standard: ease;
+  /* CSS variables cannot be media-query conditions. Keep literal queries in sync. */
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 64rem;
+}
+
+:root,
+[data-theme='white'],
+[data-theme='ivory'] {
+  color-scheme: light;
+  --surface: var(--color-white);
+  --surface-raised: var(--color-white);
+  --surface-muted: var(--color-warm-ivory);
+  --text: var(--color-slate);
+  --heading: var(--color-midnight-navy);
+  --accent: var(--color-deep-gold);
+  --link: var(--color-deep-gold);
+  --link-hover: var(--color-midnight-navy);
+  --border: var(--color-light-steel);
+  --control-border: var(--color-steel-gray);
+  --focus: var(--color-deep-gold);
+  --primary-bg: var(--color-midnight-navy);
+  --primary-text: var(--color-white);
+  --primary-hover: var(--color-graphite);
+  --secondary-hover: var(--color-warm-ivory);
+  --success: var(--color-forest-green);
+  /* Burnt orange is retained as an accent; deep gold provides AA warning text. */
+  --warning: var(--color-deep-gold);
+  --danger: var(--color-deep-red);
+  --disabled-bg: var(--color-light-steel);
+  --disabled-text: var(--color-slate);
+}
+
+[data-theme='ivory'] { --surface: var(--color-warm-ivory); }
+
+[data-theme='navy'],
+[data-theme='graphite'] {
+  color-scheme: dark;
+  --surface: var(--color-midnight-navy);
+  --surface-raised: var(--color-graphite);
+  --surface-muted: var(--color-midnight-navy);
+  --text: var(--color-light-steel);
+  --heading: var(--color-white);
+  --accent: var(--color-light-gold);
+  --link: var(--color-light-gold);
+  --link-hover: var(--color-white);
+  --border: var(--color-steel-gray);
+  --control-border: var(--color-light-steel);
+  --focus: var(--color-light-gold);
+  --primary-bg: var(--color-antique-gold);
+  --primary-text: var(--color-midnight-navy);
+  --primary-hover: var(--color-light-gold);
+  --secondary-hover: var(--color-slate);
+  /* Status hues stay on light surfaces or are replaced with readable dark-theme text. */
+  --success: var(--color-light-steel);
+  --warning: var(--color-light-gold);
+  --danger: var(--color-light-gold);
+  --disabled-bg: var(--color-slate);
+  --disabled-text: var(--color-light-steel);
+}
+
+[data-theme='graphite'] {
+  --surface: var(--color-graphite);
+  --surface-raised: var(--color-midnight-navy);
+}

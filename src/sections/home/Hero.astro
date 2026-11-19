@@ -1,0 +1,51 @@
+---
+import { existsSync } from 'node:fs';
+import Button from '../../components/Button.astro';
+import { heroVariants, HERO_VARIANT_IDS } from '../../config/heroVariants';
+import { getHeroExperimentConfig, CONSENT_STORAGE_KEY, CONSENT_MAX_AGE } from '../../config/heroExperiment';
+const hero = heroVariants.A;
+const config = getHeroExperimentConfig(import.meta.env);
+const availableImages = HERO_VARIANT_IDS.filter(id => existsSync(`${process.cwd()}/public${heroVariants[id].imagePath}`));
+---
+<!-- Gate before the hero parses, so a returning participant cannot see A flash first. -->
+<script is:inline define:vars={{ heroBoot: config, consentKey: CONSENT_STORAGE_KEY, consentMaxAge: CONSENT_MAX_AGE }}>
+  // @ts-nocheck -- define:vars injects these values into the inline script.
+  (() => {
+    try {
+      const preview = new URLSearchParams(location.search).has('hero');
+      const preference = preview ? null : JSON.parse(localStorage.getItem(consentKey) || 'null');
+      const allowedHost = heroBoot.allowedHosts.includes(location.hostname) && (heroBoot.environment !== 'production' || ['ramaekersgroup.com', 'www.ramaekersgroup.com'].includes(location.hostname));
+      const consent = preference?.choice === 'granted' && Number.isFinite(preference.updatedAt) && preference.updatedAt <= Date.now() && Date.now() - preference.updatedAt < consentMaxAge;
+      const privacy = Boolean(navigator.globalPrivacyControl) || navigator.doNotTrack === '1';
+      if (preview || (heroBoot.enabled && allowedHost && consent && !privacy)) {
+        document.documentElement.classList.add('hero-experiment-pending');
+        window.__trgHeroSafety = setTimeout(() => {
+          document.documentElement.classList.remove('hero-experiment-pending');
+        }, 4500);
+      }
+    } catch { /* Storage denial and bad preferences keep the static A fallback. */ }
+  })();
+</script>
+<section class="section home-hero" data-theme="navy" aria-labelledby="hero-title"
+  data-hero-variant="A" data-hero-source="fallback" data-available-images={availableImages.join(',')}
+  data-experiment-config={JSON.stringify(config)}>
+  <div class="container">
+    <p class="hero-loading text-small" role="status">Preparing the homepage…</p>
+    <div class="hero-content">
+      <div class="stack home-hero-copy">
+        <p class="eyebrow home-hero-eyebrow" data-hero-eyebrow>{hero.eyebrow}</p>
+        <h1 id="hero-title"><span data-hero-headline>{hero.headline}</span>{' '}<em data-hero-italic>{hero.italic}</em></h1>
+        <p class="home-hero-intro" data-hero-paragraph>{hero.paragraph}</p>
+        <div class="stack">
+          <div class="cluster"><Button disabled data-hero-cta="primary" aria-describedby="hero-contact-note">Start a Conversation</Button><Button href="#approach" variant="secondary" data-hero-cta="secondary">Explore Our Approach <span aria-hidden="true">→</span></Button></div>
+          <p id="hero-contact-note" class="text-small home-preview-note">Conversation CTA preview — contact destination pending approval.</p>
+        </div>
+      </div>
+      <p class="home-hero-footnote">For leaders of established middle-market businesses.</p>
+    </div>
+    <p class="text-small hero-preview-badge" data-hero-preview hidden></p>
+  </div>
+</section>
+<script>
+  import '../../scripts/home-hero-experiment';
+</script>

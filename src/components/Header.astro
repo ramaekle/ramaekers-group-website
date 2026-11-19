@@ -1,0 +1,39 @@
+---
+interface Props { mode?: 'reference' | 'homepage'; }
+const { mode = 'reference' } = Astro.props;
+const isHomepage = mode === 'homepage';
+const links = isHomepage ? [
+  { href: '/#services', label: 'Services' },
+  { href: '/#approach', label: 'Our approach' },
+  { href: '/#who-we-serve', label: 'Who we serve' },
+] : [
+  { href: '/design-system/', label: 'Design system' },
+  { href: '/design-system/#palette', label: 'Foundations' },
+  { href: '/design-system/#components', label: 'Components' },
+];
+---
+<header class="site-header" data-theme="navy">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="container header-inner">
+    <a class="wordmark" href={isHomepage ? '/' : '/design-system/'} aria-label={isHomepage ? 'The Ramaekers Group — home' : 'The Ramaekers Group — design system'}>
+      <span class="wordmark-name">The Ramaekers Group<span aria-hidden="true">.</span></span>
+      <span class="wordmark-caption">{isHomepage ? 'Financial & operational advisory' : 'Executive Command'}</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>{links.map(({ href, label }) => <li><a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a></li>)}</ul>
+    </nav>
+  </div>
+</header>
+<style>
+  .site-header { border-bottom: var(--border-width) solid var(--color-slate); }
+  .header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4) var(--space-8); padding-block: var(--space-6); }
+  .wordmark { display: grid; gap: var(--space-1); color: var(--heading); text-decoration: none; }
+  .wordmark:hover { color: var(--heading); }
+  .wordmark-name { font: var(--weight-bold) 1.125rem / 1.4 var(--font-heading); letter-spacing: var(--tracking-heading); }
+  .wordmark-name span { color: var(--color-light-gold); }
+  .wordmark-caption { color: var(--color-light-gold); font-size: .625rem; font-weight: var(--weight-bold); letter-spacing: .18em; text-transform: uppercase; }
+  nav ul { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); list-style: none; padding: 0; }
+  nav a { display: inline-flex; align-items: center; min-height: var(--control-height); color: var(--text); font-size: var(--text-small); font-weight: var(--weight-semibold); text-decoration: none; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--accent); text-decoration: underline; }
+  @media (min-width: 48rem) { .wordmark-name { font-size: 1.3125rem; } }
+</style>

@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+import Card from '../../components/Card.astro';
+import FormField from '../../components/FormField.astro';
+
+const palette = [
+  { name: 'Midnight navy', token: 'midnight-navy', hex: '#101D2C', use: 'Authority · navigation · hero', group: 'primary' },
+  { name: 'Graphite', token: 'graphite', hex: '#283442', use: 'Featured content · depth', group: 'primary' },
+  { name: 'Antique gold', token: 'antique-gold', hex: '#B3935B', use: 'Brand accents · premium detail', group: 'primary' },
+  { name: 'Deep gold', token: 'deep-gold', hex: '#80632F', use: 'Links on light surfaces', group: 'primary' },
+  { name: 'Light gold', token: 'light-gold', hex: '#D6B87E', use: 'Links on dark surfaces', group: 'primary' },
+  { name: 'Warm ivory', token: 'warm-ivory', hex: '#F7F5F0', use: 'Supporting sections · warmth', group: 'primary' },
+  { name: 'White', token: 'white', hex: '#FFFFFF', use: 'Primary content · clarity', group: 'primary' },
+  { name: 'Slate', token: 'slate', hex: '#465363', use: 'Body text on light surfaces', group: 'primary' },
+  { name: 'Steel gray', token: 'steel-gray', hex: '#667587', use: 'Controls · supporting detail', group: 'supporting' },
+  { name: 'Light steel', token: 'light-steel', hex: '#D9DFE5', use: 'Borders · text on dark surfaces', group: 'supporting' },
+  { name: 'Forest green', token: 'forest-green', hex: '#276749', use: 'Positive indicators + text label', group: 'supporting' },
+  { name: 'Burnt orange', token: 'burnt-orange', hex: '#B65C32', use: 'Warning accents + text label', group: 'supporting' },
+  { name: 'Deep red', token: 'deep-red', hex: '#A63232', use: 'Errors · negative indicators', group: 'supporting' },
+];
+const themes = [
+  { value: 'white', name: 'White', use: 'Primary content', title: 'Clarity starts with visibility.' },
+  { value: 'ivory', name: 'Warm ivory', use: 'Supporting content', title: 'Bring the details into focus.' },
+  { value: 'navy', name: 'Midnight navy', use: 'Hero and calls to action', title: 'Strategy with financial purpose.' },
+  { value: 'graphite', name: 'Graphite', use: 'Featured content', title: 'Discipline drives execution.' },
+];
+const typeSamples = [
+  { label: 'H1', className: 'type-h1', text: 'Strategy into profit.', spec: 'Manrope · 700 · 36–56px' },
+  { label: 'H2', className: 'type-h2', text: 'Built for serious operators.', spec: 'Manrope · 700 · 30–40px' },
+  { label: 'H3', className: 'type-h3', text: 'A clear view of performance.', spec: 'Manrope · 600 · 24–28px' },
+  { label: 'H4', className: 'type-h4', text: 'Financial and operating discipline.', spec: 'Manrope · 600 · 21px' },
+  { label: 'Body', className: '', text: 'We help serious operators ensure their strategy actually produces profit.', spec: 'Inter · 400 · 16–17px' },
+  { label: 'Small', className: 'text-small', text: 'Supporting information, captions, and component guidance.', spec: 'Inter · 400 · 14px' },
+  { label: 'Label', className: 'eyebrow', text: 'Financial visibility', spec: 'Inter · 700 · 12px' },
+];
+const spaces = [1, 2, 3, 4, 6, 8, 12, 16, 24];
+const radii = [
+  { name: 'Square', token: 'none', size: '0px' },
+  { name: 'Button / input', token: 'button', size: '6px' },
+  { name: 'Card', token: 'card', size: '16px' },
+  { name: 'Pill', token: 'pill', size: '999px' },
+];
+---
+<BaseLayout title="Executive Command design system" description="The shared visual foundation for The Ramaekers Group: brand colors, typography, section themes, and accessible interface components." noindex>
+  <section class="section showcase-hero" data-theme="navy" aria-labelledby="showcase-title">
+    <div class="container hero-grid">
+      <div class="stack hero-copy">
+        <p class="eyebrow">Design system / Version 1.0</p>
+        <h1 id="showcase-title">Executive Command<span class="gold-dot">.</span></h1>
+        <p class="hero-intro">Authority in every detail.</p>
+        <p class="measure">The shared foundation for a clear, disciplined digital presence. Built to communicate financial expertise and operational confidence.</p>
+      </div>
+      <div class="hero-note stack">
+        <p class="eyebrow">The design principle</p>
+        <p>Authority without arrogance.<br />Precision without sterility.<br />Sophistication without unnecessary decoration.</p>
+        <p class="text-small">Phase 1 · Component reference</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="section-index" aria-label="Design system sections" data-theme="white">
+    <div class="container cluster">
+      <a href="#palette"><span>01</span> Color</a>
+      <a href="#typography"><span>02</span> Typography</a>
+      <a href="#themes"><span>03</span> Surfaces</a>
+      <a href="#components"><span>04</span> Components</a>
+      <a href="#forms"><span>05</span> Forms</a>
+      <a href="#spacing"><span>06</span> Geometry</a>
+    </div>
+  </nav>
+
+  <section id="palette" class="section" data-theme="white" aria-labelledby="palette-title">
+    <div class="container stack section-stack">
+      <div class="section-heading"><p class="eyebrow">01 / Color system</p><div class="stack"><h2 id="palette-title">A palette with purpose.</h2><p class="measure">Navy establishes authority. Gold adds emphasis. Neutral surfaces keep attention on the information that matters.</p></div></div>
+      <h3 class="type-h4">Primary palette</h3>
+      <div class="palette-grid">
+        {palette.filter(c => c.group === 'primary').map(color => <article class="swatch">
+          <div class="swatch-color" style={`--swatch: var(--color-${color.token})`} aria-hidden="true"></div>
+          <div class="swatch-detail stack"><h4>{color.name}</h4><code>{color.hex}</code><p class="text-small">{color.use}</p></div>
+        </article>)}
+      </div>
+      <h3 class="type-h4">Supporting palette</h3>
+      <div class="palette-grid palette-grid--supporting">
+        {palette.filter(c => c.group === 'supporting').map(color => <article class="swatch">
+          <div class="swatch-color" style={`--swatch: var(--color-${color.token})`} aria-hidden="true"></div>
+          <div class="swatch-detail stack"><h4>{color.name}</h4><code>{color.hex}</code><p class="text-small">{color.use}</p></div>
+        </article>)}
+      </div>
+      <p class="guidance text-small">Use deep gold for links on light backgrounds and light gold on dark backgrounds. Antique gold and burnt orange are accent colors; status always includes a text label.</p>
+    </div>
+  </section>
+
+  <section id="typography" class="section" data-theme="ivory" aria-labelledby="typography-title">
+    <div class="container stack section-stack">
+      <div class="section-heading"><p class="eyebrow">02 / Typography</p><div class="stack"><h2 id="typography-title">Clear thinking. Clearly expressed.</h2><p class="measure">Manrope gives headings their structure. Inter keeps the details readable. A responsive scale preserves hierarchy from mobile to desktop.</p></div></div>
+      <div class="type-list">{typeSamples.map(sample => <div class="type-row"><span class="eyebrow">{sample.label}</span><div class="stack"><p class={sample.className}>{sample.text}</p><p class="type-spec">{sample.spec}</p></div></div>)}</div>
+      <div class="cluster text-small"><span class="nav-sample">Navigation · 14px / 600</span><span class="button-sample">Button · 14px / 700</span></div>
+      <p class="guidance text-small">Heading styles are shown as specimens here to preserve one H1 and a logical document outline. Fonts are hosted locally; no external font requests are needed.</p>
+      <a href="/design-system/typography/">Open the interactive Typography Lab →</a>
+    </div>
+  </section>
+
+  <section id="themes" class="section" data-theme="white" aria-labelledby="themes-title">
+    <div class="container stack section-stack">
+      <div class="section-heading"><p class="eyebrow">03 / Section themes</p><div class="stack"><h2 id="themes-title">Four surfaces. One system.</h2><p class="measure">Text, links, controls, and focus indicators adapt to their surrounding theme through shared semantic tokens.</p></div></div>
+      <div class="grid grid--two">{themes.map(theme => <article class="theme-panel stack" data-theme={theme.value}>
+        <p class="eyebrow">{theme.name} / {theme.use}</p><h3>{theme.title}</h3><p>Connect financial visibility with practical operating decisions.</p>
+        <div class="cluster"><Button data-demo-action>Primary action</Button><Button variant="secondary" data-demo-action>Secondary action</Button></div>
+        <a href="#components">Explore shared components →</a>
+        <Card><h4>Inset card</h4><p class="text-small">Raised surfaces follow the surrounding theme.</p></Card>
+        <FormField id={`theme-${theme.value}`} label="Example field" placeholder="Enter a value" autocomplete="off" />
+      </article>)}</div>
+    </div>
+  </section>
+
+  <section id="components" class="section" data-theme="ivory" aria-labelledby="components-title">
+    <div class="container stack section-stack">
+      <div class="section-heading"><p class="eyebrow">04 / Interface components</p><div class="stack"><h2 id="components-title">Consistent by design.</h2><p class="measure">Reusable components establish a predictable visual language. These examples demonstrate presentation and interaction, with sample content only.</p></div></div>
+      <div class="specimen stack">
+        <div class="specimen-heading"><h3>Buttons</h3><p class="text-small">44px minimum height · 6px radius</p></div>
+        <div class="cluster"><Button data-demo-action>Primary action <span aria-hidden="true">→</span></Button><Button variant="secondary" data-demo-action>Secondary action</Button><Button disabled>Unavailable</Button><Button variant="secondary" disabled>Unavailable</Button></div>
+        <p class="text-small">Hover or use Tab to inspect interactive states. Sample buttons announce their activation below.</p>
+        <p id="action-feedback" class="text-small" role="status" aria-live="polite" aria-atomic="true">Ready to test an action.</p>
+      </div>
+      <div class="specimen-heading"><h3>Cards</h3><p class="text-small">24px padding · 16px radius</p></div>
+      <div class="grid grid--three">
+        <Card><p class="eyebrow">01 / Visibility</p><h4>Understand performance.</h4><p>Connect financial reporting with the decisions leaders make every day.</p><a href="#forms">View input components →</a></Card>
+        <Card><p class="eyebrow">02 / Discipline</p><h4>Focus on execution.</h4><p>Use clear priorities, defined ownership, and consistent operating measures.</p><a href="#spacing">View spacing standards →</a></Card>
+        <Card><p class="eyebrow">03 / Outcomes</p><h4>Measure what matters.</h4><p>Keep cash flow, margin, and enterprise value at the center of the conversation.</p><p class="text-small status--success">✓ Example status: ready for review</p></Card>
+      </div>
+    </div>
+  </section>
+
+  <section id="forms" class="section" data-theme="white" aria-labelledby="forms-title">
+    <div class="container stack section-stack">
+      <div class="section-heading"><p class="eyebrow">05 / Form elements</p><div class="stack"><h2 id="forms-title">Make the next step clear.</h2><p class="measure">Visible labels, descriptive guidance, and explicit validation keep forms practical and accessible. These demonstration fields do not send or save data.</p></div></div>
+      <div class="grid grid--two">
+        <div class="specimen stack">
+          <h3>Field states</h3>
+          <FormField id="sample-name" label="Name" placeholder="Your full name" autocomplete="off" hint="Default state with supporting guidance." />
+          <FormField id="sample-success" label="Company" value="Example company" success="Company name entered (sample state)." autocomplete="off" />
+          <FormField id="sample-error" label="Work email" type="email" value="incomplete-address" error="Enter a complete email address (sample state)." autocomplete="off" />
+          <FormField id="sample-disabled" label="Unavailable field" value="Disabled example" disabled />
+        </div>
+        <form id="demo-form" class="specimen stack" novalidate>
+          <h3>Try validation</h3>
+          <p class="text-small">Submit an empty or incomplete email to inspect the error state.</p>
+          <FormField id="demo-email" label="Work email" name="email" type="email" required autocomplete="off" hint="Demo only. Use any valid example address." />
+          <p id="demo-email-error" class="field__message status--error" hidden></p>
+          <div class="field"><label class="field__label" for="demo-priority">Primary focus</label><select class="field__control" id="demo-priority" name="priority"><option value="">Select a focus area</option><option>Cash flow</option><option>Profitability</option><option>Operating discipline</option></select></div>
+          <div class="field"><label class="field__label" for="demo-message">Context (optional)</label><textarea class="field__control" id="demo-message" name="message" placeholder="What would you like to improve?"></textarea></div>
+          <div><Button type="submit">Test validation <span aria-hidden="true">→</span></Button></div>
+          <p id="form-feedback" role="status" aria-live="polite" aria-atomic="true" class="text-small">No information will be submitted.</p>
+          <noscript><p class="text-small">Enable JavaScript to try this validation demonstration.</p><style>#demo-form button { display: none; }</style></noscript>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="spacing" class="section" data-theme="graphite" aria-labelledby="spacing-title">
+    <div class="container stack section-stack">
+      <div class="section-heading"><p class="eyebrow">06 / Spacing & geometry</p><div class="stack"><h2 id="spacing-title">Room for the important things.</h2><p class="measure">A four-pixel spacing foundation creates rhythm. Restrained corners distinguish controls from content.</p></div></div>
+      <div class="grid grid--two">
+        <div class="stack"><h3>Spacing scale</h3><div class="spacing-list">{spaces.map(space => <div class="spacing-row"><code>space-{space}</code><div class="spacing-track"><div class="spacing-bar" style={`width: var(--space-${space})`}></div></div><span class="text-small">{space * 4}px</span></div>)}</div></div>
+        <div class="stack"><h3>Corner radii</h3><div class="radius-grid">{radii.map(radius => <div class="radius-item stack"><div class="radius-shape" style={`border-radius: var(--radius-${radius.token})`} aria-hidden="true"></div><p class="text-small">{radius.name}<br /><code>{radius.size}</code></p></div>)}</div><p class="text-small">Sections use fluid vertical spacing. Content is capped at 76rem with responsive page gutters.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-theme="ivory" aria-labelledby="standards-title">
+    <div class="container section-heading"><p class="eyebrow">Foundation standards</p><div class="stack"><h2 id="standards-title">Built to work at every scale.</h2><p class="measure">Static Astro components. Locally hosted type. Four explicit section themes. Keyboard focus, reduced-motion support, and responsive layouts are part of the foundation.</p><p class="text-small">Navigation references this component library. Future production destinations will be added when their pages are approved.</p><a href="#showcase-title">Return to the design overview ↑</a></div></div>
+  </section>
+</BaseLayout>
+
+<script>
+  const actionFeedback = document.querySelector('#action-feedback');
+  document.querySelectorAll<HTMLButtonElement>('[data-demo-action]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (actionFeedback) actionFeedback.textContent = `${button.textContent?.replace('→', '').trim()} activated. Demonstration only.`;
+    });
+  });
+  const form = document.querySelector<HTMLFormElement>('#demo-form');
+  const email = document.querySelector<HTMLInputElement>('#demo-email');
+  const error = document.querySelector<HTMLParagraphElement>('#demo-email-error');
+  const feedback = document.querySelector<HTMLParagraphElement>('#form-feedback');
+  if (form && email && error && feedback) {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const valid = email.checkValidity();
+      error.hidden = valid;
+      error.textContent = valid ? '' : 'Error: Enter a complete email address, such as name@example.com.';
+      if (valid) {
+        email.removeAttribute('aria-invalid');
+        email.setAttribute('aria-describedby', 'demo-email-hint');
+        feedback.textContent = 'Validation passed. No information was sent or saved.';
+      } else {
+        email.setAttribute('aria-invalid', 'true');
+        email.setAttribute('aria-describedby', 'demo-email-hint demo-email-error');
+        feedback.textContent = 'Validation failed. Check the work email field.';
+        email.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .showcase-hero { padding-block: clamp(3rem, 6vw, 6rem); }
+  .hero-grid { display: grid; gap: var(--space-12); align-items: end; }
+  .hero-copy { --stack-space: var(--space-6); }
+  .hero-copy h1 { max-width: 14ch; }
+  .hero-intro { color: var(--heading); font-family: var(--font-heading); font-size: var(--text-h4); }
+  .gold-dot { color: var(--accent); }
+  .hero-note { border-left: var(--border-strong) solid var(--color-antique-gold); padding-left: var(--space-6); font-size: var(--text-small); }
+  .section-index { border-bottom: var(--border-width) solid var(--border); padding-block: var(--space-4); }
+  .section-index .cluster { gap: var(--space-2) var(--space-8); }
+  .section-index a { display: inline-flex; gap: var(--space-2); align-items: center; min-height: var(--control-height); font-size: var(--text-small); font-weight: var(--weight-semibold); color: var(--heading); text-decoration: none; }
+  .section-index a:hover { color: var(--link); text-decoration: underline; }
+  .section-index span { color: var(--accent); font-size: var(--text-label); }
+  .section-stack { --stack-space: var(--space-8); }
+  .section-heading { display: grid; gap: var(--space-4); margin-bottom: var(--space-10); }
+  .palette-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+  .swatch { min-width: 0; overflow: hidden; border: var(--border-width) solid var(--border); border-radius: var(--radius-button); }
+  .swatch-color { background: var(--swatch); height: 7rem; border-bottom: var(--border-width) solid var(--border); }
+  .swatch-detail { --stack-space: var(--space-2); padding: var(--space-4); }
+  .swatch h4 { font-family: var(--font-body); font-size: var(--text-small); letter-spacing: normal; }
+  .swatch code { color: var(--heading); }
+  .swatch p { font-size: var(--text-label); }
+  .guidance { border-left: var(--border-strong) solid var(--accent); padding-left: var(--space-4); max-width: 85ch; }
+  .type-row { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: var(--space-4); padding-block: var(--space-6); border-bottom: var(--border-width) solid var(--border); align-items: baseline; }
+  .type-row:first-child { border-top: var(--border-width) solid var(--border); }
+  .type-row .stack { --stack-space: var(--space-3); }
+  .type-spec { font-size: var(--text-label); }
+  .nav-sample { font-weight: var(--weight-semibold); }
+  .button-sample { font-weight: var(--weight-bold); }
+  .theme-panel { padding: var(--space-6); border: var(--border-width) solid var(--border); border-radius: var(--radius-card); --stack-space: var(--space-6); }
+  .theme-panel > a { display: inline-flex; align-items: center; min-height: var(--control-height); }
+  .theme-panel .card { --stack-space: var(--space-3); }
+  .specimen { padding: var(--space-6); background: var(--surface-raised); border: var(--border-width) solid var(--border); border-radius: var(--radius-card); --stack-space: var(--space-6); }
+  .specimen-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+  .spacing-list { display: grid; gap: var(--space-3); }
+  .spacing-row { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 3rem; gap: var(--space-2); align-items: center; }
+  .spacing-track { min-width: 0; }
+  .spacing-bar { max-width: 100%; height: var(--space-3); background: var(--color-light-gold); }
+  .radius-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
+  .radius-shape { height: 5rem; border: var(--border-strong) solid var(--color-light-gold); background: var(--surface-raised); }
+  @media (min-width: 48rem) {
+    .palette-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .theme-panel { padding: var(--space-8); }
+    .section-heading { grid-template-columns: 1fr 3fr; gap: var(--space-8); }
+    .type-row { grid-template-columns: 8rem minmax(0, 1fr); }
+  }
+  @media (min-width: 64rem) {
+    .hero-grid { grid-template-columns: 2fr 1fr; gap: var(--space-20); }
+    .palette-grid--supporting { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+</style>

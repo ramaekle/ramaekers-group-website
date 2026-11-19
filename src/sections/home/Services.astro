@@ -1,0 +1,15 @@
+---
+import SectionHeading from '../../components/SectionHeading.astro';
+const services = [
+  { title: 'Financial Advisory', text: 'Build the visibility and control needed to make deliberate financial decisions.', areas: ['Cash visibility and financial control', 'Margin intelligence and working capital', 'Capital allocation'] },
+  { title: 'Operational Performance', text: 'Connect financial priorities to how work is planned, managed, and delivered.', areas: ['Productivity and cost structure', 'Operating discipline', 'Management accountability'] },
+  { title: 'Strategic Execution', text: 'Turn leadership priorities into a management rhythm that sustains progress.', areas: ['Strategic prioritization', 'Performance measurement and execution cadence', 'Enterprise value'] },
+];
+---
+<section id="services" class="section" data-theme="white" aria-labelledby="services-title">
+  <div class="container stack home-section-stack">
+    <SectionHeading id="services-title" eyebrow="Integrated advisory" title="Three Dimensions of Performance"><p>Three connected practice areas. One view of business performance. Our work addresses the financial and operational consequences of each decision together.</p></SectionHeading>
+    <div class="home-services-grid">{services.map((service, index) => <article class="home-service stack"><p class="eyebrow">0{index + 1} / Practice area</p><h3>{service.title}</h3><p>{service.text}</p><ul class="home-service-list">{service.areas.map(area => <li>{area}</li>)}</ul></article>)}</div>
+    <p class="home-integration-note">Financial insight informs operating decisions. Operating results inform strategic priorities. Each dimension strengthens the others.</p>
+  </div>
+</section>

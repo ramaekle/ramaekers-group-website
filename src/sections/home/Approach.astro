@@ -1,0 +1,18 @@
+---
+import Button from '../../components/Button.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+const steps = [
+  { title: 'Diagnose', text: 'Identify exposures, performance gaps, and the decisions behind them.' },
+  { title: 'Stabilize', text: 'Address immediate risks and establish financial and operating control.' },
+  { title: 'Command', text: 'Define ownership, management measures, and a consistent execution cadence.' },
+  { title: 'Strengthen', text: 'Improve the systems and practices that support sustained performance.' },
+  { title: 'Leverage', text: 'Use stronger performance to inform capital allocation and enterprise value decisions.' },
+];
+---
+<section id="approach" class="section" data-theme="graphite" aria-labelledby="approach-title">
+  <div class="container stack home-section-stack">
+    <SectionHeading id="approach-title" eyebrow="Our approach" title="From Diagnosis to Command"><p>Our work follows a disciplined process for identifying exposures, establishing control, and improving performance. The Black Ops Playbook underpins this progression, connecting diagnosis with practical execution.</p></SectionHeading>
+    <ol class="home-process">{steps.map((step, index) => <li class="stack"><p class="home-step-number"><span class="sr-only">Step </span>0{index + 1}{index < steps.length - 1 && <span aria-hidden="true">→</span>}</p><h3 class="type-h4">{step.title}</h3><p class="text-small">{step.text}</p></li>)}</ol>
+    <div class="stack home-method-preview"><Button variant="secondary" disabled aria-describedby="methodology-preview-note">Explore the Black Ops Playbook</Button><p id="methodology-preview-note" class="text-small">Methodology preview — the full guide is not yet published.</p></div>
+  </div>
+</section>

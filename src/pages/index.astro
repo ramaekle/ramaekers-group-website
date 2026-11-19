@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../sections/home/Hero.astro';
+import Positioning from '../sections/home/Positioning.astro';
+import Challenges from '../sections/home/Challenges.astro';
+import Services from '../sections/home/Services.astro';
+import Approach from '../sections/home/Approach.astro';
+import Audience from '../sections/home/Audience.astro';
+import Differentiation from '../sections/home/Differentiation.astro';
+import CallToAction from '../sections/home/CallToAction.astro';
+import '../styles/home.css';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
+---
+<BaseLayout
+  title="The Ramaekers Group | Financial & Operational Advisory"
+  description="Integrated financial and operational advisory helping business leaders improve cash flow, profitability, operating discipline, and strategic execution."
+  appendBrand={false}
+  navigation="homepage"
+>
+  <Hero />
+  <Positioning />
+  <Challenges />
+  <Services />
+  <Approach />
+  <Audience />
+  <Differentiation />
+  <CallToAction />
+  <AnalyticsConsent />
+</BaseLayout>

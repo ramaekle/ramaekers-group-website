@@ -1,0 +1,26 @@
+---
+const year = new Date().getFullYear();
+interface Props { mode?: 'reference' | 'homepage'; }
+const { mode = 'reference' } = Astro.props;
+const isHomepage = mode === 'homepage';
+---
+<footer class="site-footer" data-theme="navy">
+  <div class="container footer-inner">
+    <div class="stack">
+      <p class="footer-name">The Ramaekers Group, LLC</p>
+      <p class="text-small">{isHomepage ? 'Integrated financial & operational advisory' : 'Executive Command · Design foundation'}</p>
+    </div>
+    <nav aria-label="Footer">{isHomepage ? <><a href="/#services">Services</a><a href="/#approach">Our approach</a></> : <a href="/design-system/">Design system</a>}<a href="#main-content">Back to top ↑</a></nav>
+    <p class="copyright text-small">© {year} The Ramaekers Group, LLC. All rights reserved.</p>
+  </div>
+</footer>
+<style>
+  .site-footer { padding-block: var(--space-12); }
+  .footer-inner { display: grid; gap: var(--space-8); }
+  .footer-name { color: var(--heading); font-family: var(--font-heading); font-weight: var(--weight-bold); }
+  .stack { --stack-space: var(--space-2); }
+  nav { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); }
+  nav a { display: inline-flex; align-items: center; min-height: var(--control-height); font-size: var(--text-small); }
+  .copyright { padding-top: var(--space-6); border-top: var(--border-width) solid var(--border); }
+  @media (min-width: 48rem) { .footer-inner { grid-template-columns: 1fr auto; } .copyright { grid-column: 1 / -1; } }
+</style>

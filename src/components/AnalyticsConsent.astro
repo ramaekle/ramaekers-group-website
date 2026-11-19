@@ -1,0 +1,13 @@
+---
+import Button from './Button.astro';
+---
+<div class="analytics-choices" id="analytics-choices" data-theme="white" role="region" aria-label="Analytics choices" hidden>
+  <details>
+    <summary>Analytics choices</summary>
+    <div class="stack">
+      <p>Optional analytics help us compare homepage messages and understand engagement. If you accept, PostHog stores an anonymous browser identifier across visits. We do not record form entries or session replays.</p>
+      <div class="cluster"><Button id="analytics-accept">Accept analytics</Button><Button id="analytics-reject" variant="secondary">Reject analytics</Button></div>
+      <p class="text-small" id="analytics-consent-status" role="status" aria-live="polite">Analytics are off until you choose to accept.</p>
+    </div>
+  </details>
+</div>

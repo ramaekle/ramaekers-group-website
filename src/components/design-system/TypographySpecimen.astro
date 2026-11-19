@@ -1,0 +1,41 @@
+---
+import Button from '../Button.astro';
+import Card from '../Card.astro';
+import FormField from '../FormField.astro';
+interface Props { id: 'a' | 'b'; }
+const { id } = Astro.props;
+---
+<div class="lab-specimen stack" data-specimen={id}>
+  <nav class="lab-sample-nav cluster" aria-label={`Sample navigation, pairing ${id.toUpperCase()}`}>
+    <a href={`#${id}-hero`}>Overview</a><a href={`#${id}-card`}>Cash command</a><a href={`#${id}-field`}>Contact</a>
+  </nav>
+  <section class="lab-sample-hero stack" aria-labelledby={`${id}-hero`}>
+    <p class="eyebrow">Executive advisory / Sample hero</p>
+    <h3 class="type-h1 lab-heading" id={`${id}-hero`}>Strategy Must Produce Profit.</h3>
+    <p>We help serious operators turn financial visibility, operating discipline, and strategic execution into measurable business results.</p>
+    <a class="button button--primary" href={`#${id}-field`}>Discuss your priorities →</a>
+  </section>
+  <section class="lab-type-samples stack" aria-label="Heading scale specimens">
+    <p class="eyebrow">Heading scale / H1–H4</p>
+    {[1, 2, 3, 4].map(level => <div class="lab-type-row"><span class="lab-type-label">H{level}</span><p class={`type-h${level} lab-heading`}>Strategy Must Produce Profit.</p></div>)}
+    <p class="text-small">The H1–H4 specimens use paragraph elements to preserve the page’s heading hierarchy.</p>
+  </section>
+  <div class="lab-metric stack">
+    <p class="eyebrow">Financial metric / Illustrative only</p>
+    <p class="lab-metric-value">Operating Margin: <strong>18.4%</strong></p>
+    <p class="text-small">Sample data for typography evaluation; not a client result.</p>
+  </div>
+  <div id={`${id}-card`}>
+    <Card><h3 class="lab-heading">Cash Command</h3><p>Establish visibility, control, and accountability over the cash that drives your business.</p><a href={`#${id}-field`}>Explore the next step →</a></Card>
+  </div>
+  <div class="stack lab-paragraphs">
+    <p class="eyebrow">Paragraphs / Reading rhythm</p>
+    <p>We help serious operators turn financial visibility, operating discipline, and strategic execution into measurable business results.</p>
+    <p>Establish visibility, control, and accountability over the cash that drives your business.</p>
+  </div>
+  <div class="stack lab-form-sample">
+    <FormField id={`${id}-field`} label="Work email" type="email" placeholder="name@example.com" hint="Sample field. No information is sent or saved." autocomplete="off" />
+    <div class="cluster"><Button data-sample-action={id}>Primary action</Button><Button variant="secondary" data-sample-action={id}>Secondary action</Button></div>
+    <p class="text-small" data-action-feedback role="status" aria-live="polite">Try a sample action.</p>
+  </div>
+</div>
