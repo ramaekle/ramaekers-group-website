@@ -135,3 +135,19 @@ test('event sanitizer rejects unexpected events and removes URLs, input, and con
   const clean = sanitizeEvent(event)!; assert.equal(clean.properties.email, undefined); assert.equal(clean.properties.form_value, undefined); assert.equal(clean.properties.$current_url, undefined); assert.equal(clean.properties.$ip, '0.0.0.0'); assert.equal(clean.properties.variant_id, 'B');
   assert.equal(sanitizeEvent({ ...event, event: '$autocapture' }), null);
 });
+
+test('hero images: every variant needs AVIF and WebP at each width, and the smallest covering width is chosen', async () => {
+  const { heroImageFiles, heroImageWidth, heroImageSet, HERO_IMAGE_WIDTHS } = await import('../src/config/heroVariants.ts');
+  const { existsSync } = await import('node:fs');
+  for (const id of HERO_VARIANT_IDS) {
+    const files = heroImageFiles(heroVariants[id].imagePath);
+    assert.equal(files.length, HERO_IMAGE_WIDTHS.length * 2);
+    for (const file of files) assert.ok(existsSync(`public${file}`), `missing ${file}`);
+  }
+  assert.equal(heroImageWidth(390, 3), 1536);
+  assert.equal(heroImageWidth(390, 2), 960);
+  assert.equal(heroImageWidth(1440, 1), 1536);
+  assert.equal(heroImageWidth(1440, 2), 2048);
+  assert.equal(heroImageWidth(4000, 2), 2048);
+  assert.match(heroImageSet('/images/heroes/clarity', 960), /^image-set\(url\("\/images\/heroes\/clarity-960\.avif"\) type\("image\/avif"\), url\("\/images\/heroes\/clarity-960\.webp"\) type\("image\/webp"\)\)$/);
+});

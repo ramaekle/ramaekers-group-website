@@ -7,7 +7,7 @@ import { gunzipSync } from 'node:zlib';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE_PATH || 'playwright');
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const config = { enabled: true, token: 'phc_trg_mock_no_real_credentials', host: 'https://posthog.test', environment: 'development', allowedHosts: ['hero.test'] };
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.woff2': 'font/woff2', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon' };
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.woff2': 'font/woff2', '.webp': 'image/webp', '.avif': 'image/avif', '.svg': 'image/svg+xml', '.ico': 'image/x-icon' };
 try {
   for (const scenario of [
     { gpc: true, width: 375, blocked: true },
