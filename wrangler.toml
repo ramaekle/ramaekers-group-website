@@ -1,0 +1,14 @@
+# Ramaekers Group website, STAGING only: static Astro build served by a Cloudflare Worker (assets only).
+# Production (ramaekersgroup.com) is not configured here; it comes when the site leaves development.
+# account_id comes from the CLOUDFLARE_ACCOUNT_ID secret at deploy time.
+name = "ramaekersgroup-site-staging"
+compatibility_date = "2026-11-01"
+workers_dev = false
+
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
+
+routes = [
+  { pattern = "staging.ramaekersgroup.com/*", zone_name = "ramaekersgroup.com" }
+]

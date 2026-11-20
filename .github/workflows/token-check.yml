@@ -1,0 +1,23 @@
+name: Check Cloudflare token (no deploy)
+# Read-only: asks Cloudflare yes/no questions with the token. Never deploys, never prints the token.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Check the Cloudflare token
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          fail=0
+          chk() { echo "== $1"; r=$(curl -s -H "Authorization: Bearer $CF_TOKEN" "https://api.cloudflare.com/client/v4$2"); echo "$r" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("success:", d.get("success"), "| errors:", [(e.get("code"), e.get("message")) for e in d.get("errors", [])])'; echo "$r" | python3 -c 'import json,sys; sys.exit(0 if json.load(sys.stdin).get("success") else 1)' || fail=1; }
+          echo "account id length: ${#CF_ACCT}"
+          chk "token valid for this account" "/accounts/$CF_ACCT/tokens/verify"
+          chk "can list Workers" "/accounts/$CF_ACCT/workers/scripts"
+          chk "can see zone ramaekersgroup.com" "/zones?name=ramaekersgroup.com"
+          exit $fail

@@ -1,0 +1,24 @@
+name: Checks
+# Stage 2 build checks on every push and pull request. Read-only token, no secrets.
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: npm run test:hero
+      - name: No em or en dashes in site copy
+        run: |
+          if grep -rn --exclude=typography-lab.ts $'—\|–' src; then echo "Dashes found (brand rule)"; exit 1; fi
