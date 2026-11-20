@@ -1,11 +1,15 @@
 name: Deploy staging (staging.ramaekersgroup.com)
-# Runs only when Larry presses Run workflow on main and types STAGE. Freezes and fingerprints the build.
+# Runs only when Larry presses Run workflow on main, types STAGE and the commit named in "Ready for Staging".
+# Refuses unless main is exactly at that commit, so only the reviewed version is staged. Freezes and fingerprints the build.
 # Staging sits behind Cloudflare Access (sign-in). Production is not deployable from this repo yet.
 on:
   workflow_dispatch:
     inputs:
       confirm:
         description: "Type STAGE to publish main to staging.ramaekersgroup.com"
+        required: true
+      commit:
+        description: "Commit from the Ready for Staging message (at least 7 characters); refused if main has moved"
         required: true
 permissions:
   contents: read
@@ -18,6 +22,16 @@ jobs:
     environment: staging
     if: ${{ inputs.confirm == 'STAGE' && github.ref == 'refs/heads/main' }}
     steps:
+      - name: Check main is at the reviewed commit
+        env:
+          WANT: ${{ inputs.commit }}
+          HAVE: ${{ github.sha }}
+        run: |
+          want=$(printf %s "$WANT" | tr -d '[:space:]' | tr 'A-F' 'a-f')
+          case "$want" in *[!0-9a-f]*|"") echo "Commit must be letters a-f and digits only"; exit 1;; esac
+          [ ${#want} -ge 7 ] || { echo "Give at least 7 characters of the commit"; exit 1; }
+          case "$HAVE" in "$want"*) echo "main is at the reviewed commit $want ($HAVE)" | tee -a "$GITHUB_STEP_SUMMARY";;
+            *) echo "REFUSED: main is at $HAVE, not the reviewed commit $want. Ask for a fresh review of the new commit." | tee -a "$GITHUB_STEP_SUMMARY"; exit 1;; esac
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
