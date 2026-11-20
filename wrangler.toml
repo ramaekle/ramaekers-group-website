@@ -5,10 +5,11 @@ name = "ramaekersgroup-site-staging"
 compatibility_date = "2026-11-01"
 workers_dev = false
 
-[assets]
-directory = "./dist"
-not_found_handling = "404-page"
-
+# Top-level keys must come before any [table]; otherwise TOML nests them inside it.
 routes = [
   { pattern = "staging.ramaekersgroup.com/*", zone_name = "ramaekersgroup.com" }
 ]
+
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"

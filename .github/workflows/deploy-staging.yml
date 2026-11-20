@@ -57,7 +57,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "3.114.0"
-          command: deploy --message "staged ${{ github.sha }}"
+          command: deploy
       - name: Confirm staging is behind the sign-in
         run: |
           sleep 10
