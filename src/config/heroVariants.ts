@@ -1,5 +1,5 @@
 export const HERO_EXPERIMENT_ID = 'trg-home-hero-v1';
-export const HERO_EXPERIMENT_NAME = 'TRG Homepage Hero — Round 1';
+export const HERO_EXPERIMENT_NAME = 'TRG Homepage Hero, Round 1';
 export const HERO_VARIANT_IDS = ['A', 'B', 'C', 'D'] as const;
 export type HeroVariantId = typeof HERO_VARIANT_IDS[number];
 export interface HeroVariant {
@@ -34,7 +34,7 @@ export const heroVariants: Record<HeroVariantId, HeroVariant> = {
     id: 'C', label: 'Under pressure',
     eyebrow: 'Turnaround and Interim Management',
     headline: 'When cash gets tight,', italic: 'every week counts.',
-    paragraph: 'Losses, a lender losing patience, a major customer gone. Ramaekers Group steps in to take control of cash, stabilize the operation, and restore margin—as an advisor or as interim leadership. We act before your options start to narrow.',
+    paragraph: 'Losses, a lender losing patience, a major customer gone. Ramaekers Group steps in to take control of cash, stabilize the operation, and restore margin, as an advisor or as interim leadership. We act before your options start to narrow.',
     imagePath: '/images/heroes/under-pressure',
     focalPoint: { mobile: '90% 50%', desktop: 'center bottom' },
   },

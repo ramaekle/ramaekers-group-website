@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+<BaseLayout title="Page Not Found" description="The page you were looking for is not here." noindex navigation="homepage">
+  <section class="section" data-theme="navy" aria-labelledby="not-found-title">
+    <div class="container stack">
+      <p class="eyebrow">404</p>
+      <h1 id="not-found-title">Page Not Found.</h1>
+      <p class="measure">The page you were looking for is not here. It may have moved.</p>
+      <div class="cluster"><Button href="/">Back to the Homepage</Button></div>
+    </div>
+  </section>
+</BaseLayout>
