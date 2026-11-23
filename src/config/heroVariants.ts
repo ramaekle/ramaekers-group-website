@@ -17,7 +17,7 @@ export const heroVariants: Record<HeroVariantId, HeroVariant> = {
   A: {
     id: 'A', label: 'Operations first',
     eyebrow: 'Turnaround · Restructuring · Performance Improvement',
-    headline: 'Improve the operation.', italic: 'The cash and margins follow.',
+    headline: 'Improve the Operation.', italic: 'The Cash and Margins Follow.',
     paragraph: 'Ramaekers Group works with owners and CEOs to find where cash and margin slip out of the business, then fixes it in the operations where it starts. Pricing, working capital, cost, and execution are corrected in order of dollars recovered.',
     imagePath: '/images/heroes/operations',
     focalPoint: { mobile: '60% 50%', desktop: 'center top' },
@@ -25,7 +25,7 @@ export const heroVariants: Record<HeroVariantId, HeroVariant> = {
   B: {
     id: 'B', label: 'Principal-led',
     eyebrow: 'Hands-on Operational and Financial Leadership',
-    headline: 'Senior judgment at the table.', italic: 'Hands-on execution in the business.',
+    headline: 'Senior Judgment at the Table.', italic: 'Hands-On Execution in the Business.',
     paragraph: 'Larry Ramaekers leads the engagement, bringing financial analysis and operational judgment directly to the decisions that matter. He works alongside owners, executives, and their teams to identify performance gaps and implement practical solutions, supported by specialist resources when needed.',
     imagePath: '/images/heroes/principal-led',
     focalPoint: { mobile: '65% 45%', desktop: 'center top' },
@@ -33,7 +33,7 @@ export const heroVariants: Record<HeroVariantId, HeroVariant> = {
   C: {
     id: 'C', label: 'Under pressure',
     eyebrow: 'Turnaround and Interim Management',
-    headline: 'When cash gets tight,', italic: 'every week counts.',
+    headline: 'When Cash Gets Tight,', italic: 'Every Week Counts.',
     paragraph: 'Losses, a lender losing patience, a major customer gone. Ramaekers Group steps in to take control of cash, stabilize the operation, and restore margin, as an advisor or as interim leadership. We act before your options start to narrow.',
     imagePath: '/images/heroes/under-pressure',
     focalPoint: { mobile: '90% 50%', desktop: 'center bottom' },
@@ -41,7 +41,7 @@ export const heroVariants: Record<HeroVariantId, HeroVariant> = {
   D: {
     id: 'D', label: 'Clarity to decisions',
     eyebrow: 'Cash and Margin Improvement for Owner-Led Companies',
-    headline: 'Know your numbers.', italic: 'Run your business on them.',
+    headline: 'Know Your Numbers.', italic: 'Run Your Business on Them.',
     paragraph: "Most owners make real money decisions on reports that can't show where cash goes. We model how cash actually moves through your company, rank what's costing you, and turn the findings into decisions your team can carry out.",
     imagePath: '/images/heroes/clarity',
     focalPoint: { mobile: '60% 50%', desktop: 'center top' },

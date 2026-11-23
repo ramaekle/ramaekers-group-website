@@ -30,8 +30,8 @@ const create = (f: ReturnType<typeof fixture>, allowed = () => true, render: (id
 test('four canonical treatments have distinct requested image paths', () => {
   assert.deepEqual(Object.keys(heroVariants), ['A', 'B', 'C', 'D']);
   assert.equal(new Set(HERO_VARIANT_IDS.map(id => heroVariants[id].imagePath)).size, 4);
-  assert.equal(heroVariants.B.headline, 'Senior judgment at the table.');
-  assert.equal(heroVariants.D.italic, 'Run your business on them.');
+  assert.equal(heroVariants.B.headline, 'Senior Judgment at the Table.');
+  assert.equal(heroVariants.D.italic, 'Run Your Business on Them.');
 });
 test('configuration is off by default and production excludes local hosts', () => {
   assert.equal(getHeroExperimentConfig({}).enabled, false);
