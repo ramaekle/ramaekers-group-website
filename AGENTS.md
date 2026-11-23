@@ -172,7 +172,10 @@ Mobile typography:
 Use responsive CSS typography with clamp()
 where appropriate.
 
-Use sentence case for headings.
+Use Title Case for headings and CTA labels (brand standard v1.0; Larry, 2026-11-19
+and 2026-11-23). Capitalize every word except short articles, conjunctions and
+prepositions (a, an, and, as, at, but, by, for, from, in, into, nor, of, on, or,
+per, the, to, via, vs, with), which stay lowercase unless they come first.
 
 Reserve uppercase typography for small labels,
 navigation categories, and short identifiers.
