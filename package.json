@@ -12,7 +12,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:browser": "npm run build && node tests/hero-regressions-browser.mjs"
+    "test:browser": "npm run build && node tests/hero-regressions-browser.mjs",
+    "test:design-system": "node --test tests/design-system-title-case.test.ts"
   },
   "dependencies": {
     "astro": "^7.4.12",

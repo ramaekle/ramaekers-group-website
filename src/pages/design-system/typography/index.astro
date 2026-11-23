@@ -17,7 +17,7 @@ import '../../../styles/typography-lab.css';
   </section>
   <section class="section lab-workspace" data-theme="ivory" aria-labelledby="controls-title" id="typography-lab">
     <div class="container stack lab-layout">
-      <div class="stack"><p class="eyebrow">Evaluation controls</p><h2 id="controls-title">Choose a pairing.</h2><p>Compare identical content with shared sizes, spacing, and surfaces. Changes apply only to the specimens below.</p></div>
+      <div class="stack"><p class="eyebrow">Evaluation controls</p><h2 id="controls-title">Choose a Pairing.</h2><p>Compare identical content with shared sizes, spacing, and surfaces. Changes apply only to the specimens below.</p></div>
       <noscript><p class="card">Enable JavaScript to load and compare the evaluation fonts.</p></noscript>
       <form id="lab-controls" class="card stack" aria-label="Typography evaluation settings">
         <div class="lab-control-header cluster">
@@ -41,7 +41,7 @@ import '../../../styles/typography-lab.css';
         </div>
         <p class="text-small">Weights apply to all specimen headings. Lato uses real 400/700/900 faces; Josefin Sans and the existing Inter declaration stop at 700. Any mapped weight is identified in each panel. Synthetic weights are disabled.</p>
       </form>
-      <div class="cluster lab-preview-heading"><h2 class="type-h3">Live specimens</h2><p class="text-small">Equal content. Equal scale. Independent font pairings.</p></div>
+      <div class="cluster lab-preview-heading"><h2 class="type-h3">Live Specimens</h2><p class="text-small">Equal content. Equal scale. Independent font pairings.</p></div>
       <div id="lab-comparisons" class="lab-comparisons">
         {(['a', 'b'] as const).map(id => <section class="lab-panel" data-panel={id} data-theme="white" aria-labelledby={`pairing-${id}-title`} hidden={id === 'b'}>
           <div class="lab-panel-caption stack"><h2 class="type-h4" id={`pairing-${id}-title`}>Pairing {id.toUpperCase()}</h2><p class="text-small" data-pairing-description>Manrope headings / Inter body</p><p class="text-small" data-font-status role="status" aria-live="polite" aria-atomic="true">Loading selected fonts…</p></div>
