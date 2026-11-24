@@ -20,10 +20,10 @@ const palette = [
   { name: 'Deep red', token: 'deep-red', hex: '#A63232', use: 'Errors · negative indicators', group: 'supporting' },
 ];
 const themes = [
-  { value: 'white', name: 'White', use: 'Primary content', title: 'Clarity starts with visibility.' },
-  { value: 'ivory', name: 'Warm ivory', use: 'Supporting content', title: 'Bring the details into focus.' },
-  { value: 'navy', name: 'Midnight navy', use: 'Hero and calls to action', title: 'Strategy with financial purpose.' },
-  { value: 'graphite', name: 'Graphite', use: 'Featured content', title: 'Discipline drives execution.' },
+  { value: 'white', name: 'White', use: 'Primary content', title: 'Clarity Starts with Visibility.' },
+  { value: 'ivory', name: 'Warm ivory', use: 'Supporting content', title: 'Bring the Details into Focus.' },
+  { value: 'navy', name: 'Midnight navy', use: 'Hero and calls to action', title: 'Strategy with Financial Purpose.' },
+  { value: 'graphite', name: 'Graphite', use: 'Featured content', title: 'Discipline Drives Execution.' },
 ];
 const typeSamples = [
   { label: 'H1', className: 'type-h1', text: 'Strategy into profit.', spec: 'Manrope · 700 · 36 to 56px' },
@@ -72,15 +72,15 @@ const radii = [
 
   <section id="palette" class="section" data-theme="white" aria-labelledby="palette-title">
     <div class="container stack section-stack">
-      <div class="section-heading"><p class="eyebrow">01 / Color system</p><div class="stack"><h2 id="palette-title">A palette with purpose.</h2><p class="measure">Navy establishes authority. Gold adds emphasis. Neutral surfaces keep attention on the information that matters.</p></div></div>
-      <h3 class="type-h4">Primary palette</h3>
+      <div class="section-heading"><p class="eyebrow">01 / Color system</p><div class="stack"><h2 id="palette-title">A Palette with Purpose.</h2><p class="measure">Navy establishes authority. Gold adds emphasis. Neutral surfaces keep attention on the information that matters.</p></div></div>
+      <h3 class="type-h4">Primary Palette</h3>
       <div class="palette-grid">
         {palette.filter(c => c.group === 'primary').map(color => <article class="swatch">
           <div class="swatch-color" style={`--swatch: var(--color-${color.token})`} aria-hidden="true"></div>
           <div class="swatch-detail stack"><h4>{color.name}</h4><code>{color.hex}</code><p class="text-small">{color.use}</p></div>
         </article>)}
       </div>
-      <h3 class="type-h4">Supporting palette</h3>
+      <h3 class="type-h4">Supporting Palette</h3>
       <div class="palette-grid palette-grid--supporting">
         {palette.filter(c => c.group === 'supporting').map(color => <article class="swatch">
           <div class="swatch-color" style={`--swatch: var(--color-${color.token})`} aria-hidden="true"></div>
@@ -93,7 +93,7 @@ const radii = [
 
   <section id="typography" class="section" data-theme="ivory" aria-labelledby="typography-title">
     <div class="container stack section-stack">
-      <div class="section-heading"><p class="eyebrow">02 / Typography</p><div class="stack"><h2 id="typography-title">Clear thinking. Clearly expressed.</h2><p class="measure">Manrope gives headings their structure. Inter keeps the details readable. A responsive scale preserves hierarchy from mobile to desktop.</p></div></div>
+      <div class="section-heading"><p class="eyebrow">02 / Typography</p><div class="stack"><h2 id="typography-title">Clear Thinking. Clearly Expressed.</h2><p class="measure">Manrope gives headings their structure. Inter keeps the details readable. A responsive scale preserves hierarchy from mobile to desktop.</p></div></div>
       <div class="type-list">{typeSamples.map(sample => <div class="type-row"><span class="eyebrow">{sample.label}</span><div class="stack"><p class={sample.className}>{sample.text}</p><p class="type-spec">{sample.spec}</p></div></div>)}</div>
       <div class="cluster text-small"><span class="nav-sample">Navigation · 14px / 600</span><span class="button-sample">Button · 14px / 700</span></div>
       <p class="guidance text-small">Heading styles are shown as specimens here to preserve one H1 and a logical document outline. Fonts are hosted locally; no external font requests are needed.</p>
@@ -103,7 +103,7 @@ const radii = [
 
   <section id="themes" class="section" data-theme="white" aria-labelledby="themes-title">
     <div class="container stack section-stack">
-      <div class="section-heading"><p class="eyebrow">03 / Section themes</p><div class="stack"><h2 id="themes-title">Four surfaces. One system.</h2><p class="measure">Text, links, controls, and focus indicators adapt to their surrounding theme through shared semantic tokens.</p></div></div>
+      <div class="section-heading"><p class="eyebrow">03 / Section themes</p><div class="stack"><h2 id="themes-title">Four Surfaces. One System.</h2><p class="measure">Text, links, controls, and focus indicators adapt to their surrounding theme through shared semantic tokens.</p></div></div>
       <div class="grid grid--two">{themes.map(theme => <article class="theme-panel stack" data-theme={theme.value}>
         <p class="eyebrow">{theme.name} / {theme.use}</p><h3>{theme.title}</h3><p>Connect financial visibility with practical operating decisions.</p>
         <div class="cluster"><Button data-demo-action>Primary action</Button><Button variant="secondary" data-demo-action>Secondary action</Button></div>
@@ -116,7 +116,7 @@ const radii = [
 
   <section id="components" class="section" data-theme="ivory" aria-labelledby="components-title">
     <div class="container stack section-stack">
-      <div class="section-heading"><p class="eyebrow">04 / Interface components</p><div class="stack"><h2 id="components-title">Consistent by design.</h2><p class="measure">Reusable components establish a predictable visual language. These examples demonstrate presentation and interaction, with sample content only.</p></div></div>
+      <div class="section-heading"><p class="eyebrow">04 / Interface components</p><div class="stack"><h2 id="components-title">Consistent by Design.</h2><p class="measure">Reusable components establish a predictable visual language. These examples demonstrate presentation and interaction, with sample content only.</p></div></div>
       <div class="specimen stack">
         <div class="specimen-heading"><h3>Buttons</h3><p class="text-small">44px minimum height · 6px radius</p></div>
         <div class="cluster"><Button data-demo-action>Primary action <span aria-hidden="true">→</span></Button><Button variant="secondary" data-demo-action>Secondary action</Button><Button disabled>Unavailable</Button><Button variant="secondary" disabled>Unavailable</Button></div>
@@ -134,17 +134,17 @@ const radii = [
 
   <section id="forms" class="section" data-theme="white" aria-labelledby="forms-title">
     <div class="container stack section-stack">
-      <div class="section-heading"><p class="eyebrow">05 / Form elements</p><div class="stack"><h2 id="forms-title">Make the next step clear.</h2><p class="measure">Visible labels, descriptive guidance, and explicit validation keep forms practical and accessible. These demonstration fields do not send or save data.</p></div></div>
+      <div class="section-heading"><p class="eyebrow">05 / Form elements</p><div class="stack"><h2 id="forms-title">Make the Next Step Clear.</h2><p class="measure">Visible labels, descriptive guidance, and explicit validation keep forms practical and accessible. These demonstration fields do not send or save data.</p></div></div>
       <div class="grid grid--two">
         <div class="specimen stack">
-          <h3>Field states</h3>
+          <h3>Field States</h3>
           <FormField id="sample-name" label="Name" placeholder="Your full name" autocomplete="off" hint="Default state with supporting guidance." />
           <FormField id="sample-success" label="Company" value="Example company" success="Company name entered (sample state)." autocomplete="off" />
           <FormField id="sample-error" label="Work email" type="email" value="incomplete-address" error="Enter a complete email address (sample state)." autocomplete="off" />
           <FormField id="sample-disabled" label="Unavailable field" value="Disabled example" disabled />
         </div>
         <form id="demo-form" class="specimen stack" novalidate>
-          <h3>Try validation</h3>
+          <h3>Try Validation</h3>
           <p class="text-small">Submit an empty or incomplete email to inspect the error state.</p>
           <FormField id="demo-email" label="Work email" name="email" type="email" required autocomplete="off" hint="Demo only. Use any valid example address." />
           <p id="demo-email-error" class="field__message status--error" hidden></p>
@@ -160,16 +160,16 @@ const radii = [
 
   <section id="spacing" class="section" data-theme="graphite" aria-labelledby="spacing-title">
     <div class="container stack section-stack">
-      <div class="section-heading"><p class="eyebrow">06 / Spacing & geometry</p><div class="stack"><h2 id="spacing-title">Room for the important things.</h2><p class="measure">A four-pixel spacing foundation creates rhythm. Restrained corners distinguish controls from content.</p></div></div>
+      <div class="section-heading"><p class="eyebrow">06 / Spacing & geometry</p><div class="stack"><h2 id="spacing-title">Room for the Important Things.</h2><p class="measure">A four-pixel spacing foundation creates rhythm. Restrained corners distinguish controls from content.</p></div></div>
       <div class="grid grid--two">
-        <div class="stack"><h3>Spacing scale</h3><div class="spacing-list">{spaces.map(space => <div class="spacing-row"><code>space-{space}</code><div class="spacing-track"><div class="spacing-bar" style={`width: var(--space-${space})`}></div></div><span class="text-small">{space * 4}px</span></div>)}</div></div>
-        <div class="stack"><h3>Corner radii</h3><div class="radius-grid">{radii.map(radius => <div class="radius-item stack"><div class="radius-shape" style={`border-radius: var(--radius-${radius.token})`} aria-hidden="true"></div><p class="text-small">{radius.name}<br /><code>{radius.size}</code></p></div>)}</div><p class="text-small">Sections use fluid vertical spacing. Content is capped at 76rem with responsive page gutters.</p></div>
+        <div class="stack"><h3>Spacing Scale</h3><div class="spacing-list">{spaces.map(space => <div class="spacing-row"><code>space-{space}</code><div class="spacing-track"><div class="spacing-bar" style={`width: var(--space-${space})`}></div></div><span class="text-small">{space * 4}px</span></div>)}</div></div>
+        <div class="stack"><h3>Corner Radii</h3><div class="radius-grid">{radii.map(radius => <div class="radius-item stack"><div class="radius-shape" style={`border-radius: var(--radius-${radius.token})`} aria-hidden="true"></div><p class="text-small">{radius.name}<br /><code>{radius.size}</code></p></div>)}</div><p class="text-small">Sections use fluid vertical spacing. Content is capped at 76rem with responsive page gutters.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section" data-theme="ivory" aria-labelledby="standards-title">
-    <div class="container section-heading"><p class="eyebrow">Foundation standards</p><div class="stack"><h2 id="standards-title">Built to work at every scale.</h2><p class="measure">Static Astro components. Locally hosted type. Four explicit section themes. Keyboard focus, reduced-motion support, and responsive layouts are part of the foundation.</p><p class="text-small">Navigation references this component library. Future production destinations will be added when their pages are approved.</p><a href="#showcase-title">Return to the design overview ↑</a></div></div>
+    <div class="container section-heading"><p class="eyebrow">Foundation standards</p><div class="stack"><h2 id="standards-title">Built to Work at Every Scale.</h2><p class="measure">Static Astro components. Locally hosted type. Four explicit section themes. Keyboard focus, reduced-motion support, and responsive layouts are part of the foundation.</p><p class="text-small">Navigation references this component library. Future production destinations will be added when their pages are approved.</p><a href="#showcase-title">Return to the design overview ↑</a></div></div>
   </section>
 </BaseLayout>
 
